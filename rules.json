@@ -1,0 +1,68 @@
+{
+  "strategy": "swing-trading",
+  "watchlist": {
+    "crypto_pairs": [
+      "BINANCE:BTCUSDT",
+      "BINANCE:ETHUSDT",
+      "BINANCE:SOLUSDT",
+      "BINANCE:BNBUSDT",
+      "BINANCE:XRPUSDT",
+      "BINANCE:ADAUSDT",
+      "BINANCE:AVAXUSDT",
+      "BINANCE:LINKUSDT"
+    ],
+    "macro_dominance": [
+      "CRYPTOCAP:BTC.D",
+      "CRYPTOCAP:ETH.D",
+      "CRYPTOCAP:USDT.D",
+      "CRYPTOCAP:TOTAL",
+      "CRYPTOCAP:TOTAL2",
+      "CRYPTOCAP:TOTAL3"
+    ]
+  },
+  "timeframes": {
+    "weekly": {
+      "resolution": "W",
+      "purpose": "Macro trend direction and major structure — defines the dominant bias"
+    },
+    "daily": {
+      "resolution": "D",
+      "purpose": "Primary swing timeframe — bias confirmation and setup identification"
+    },
+    "4h": {
+      "resolution": "240",
+      "purpose": "Entry timing and trade management — refine entries within daily bias"
+    }
+  },
+  "bias_criteria": {
+    "bullish": {
+      "ema_position": "Price above the 50 EMA and the 50 EMA above the 200 EMA on daily; weekly close above the 50 EMA",
+      "rsi_range": "Daily RSI(14) holding between 40 and 80; pullbacks find support in the 40-50 zone",
+      "market_structure": "Higher highs and higher lows on weekly and daily; most recent swing low undisturbed"
+    },
+    "bearish": {
+      "ema_position": "Price below the 50 EMA and the 50 EMA below the 200 EMA on daily; weekly close below the 50 EMA",
+      "rsi_range": "Daily RSI(14) holding between 20 and 60; rallies stall in the 50-60 zone",
+      "market_structure": "Lower highs and lower lows on weekly and daily; most recent swing high undisturbed"
+    },
+    "neutral": "If timeframes conflict or price is chopping between the 50 and 200 EMA, stand aside — no trade"
+  },
+  "risk_rules": {
+    "max_risk_per_trade_pct": 1.0,
+    "min_reward_to_risk": 2.0,
+    "position_sizing": "Size each position so the distance from entry to stop equals at most 1% of account equity",
+    "stop_loss": "Always set a hard stop beyond the invalidating swing point before entry",
+    "no_trade_conditions": [
+      "Reward-to-risk below 2:1 at planned entry",
+      "Bias is neutral or timeframes conflict",
+      "Within 24h of major macro events without a defined plan"
+    ]
+  },
+  "indicators": [
+    { "name": "Relative Strength Index", "settings": { "length": 14 } },
+    { "name": "MACD", "settings": { "fast": 12, "slow": 26, "signal": 9 } },
+    { "name": "Moving Average Exponential", "settings": { "length": 50 } },
+    { "name": "Moving Average Exponential", "settings": { "length": 200 } },
+    { "name": "Volume", "settings": {} }
+  ]
+}
